@@ -81,6 +81,39 @@ steps_name = {0 : 'run', 1 : 'Neant', 2 : 'products', 3: 'container_size', 4: 'p
 # Date de début de génération 
 start_date = datetime(2022, 1, 1)
 
+
+
+def generate_production_labels_csv(num_entries: int = 100,file_path: str = "data_csv/production_labels.csv"):
+    """
+    Génère un fichier CSV contenant des libellés de production associés à un ID.
+
+    Parameters:
+    - file_path (str): Chemin où sauvegarder le fichier CSV.
+    - num_entries (int): Nombre d'entrées à générer (par défaut 100).
+    
+    Returns:
+    - str: Chemin du fichier CSV généré.
+    """
+    # Créer des ID de production
+    production_ids = range(1, num_entries + 1)
+
+    # Créer des libellés de production associés
+    production_labels = [f"Prod n{i}" for i in production_ids]
+
+    # Créer une DataFrame avec les IDs et les libellés correspondants
+    production_df = pd.DataFrame({
+        "production_id": production_ids,
+        "libellé_production": production_labels
+    })
+
+    # Exporter la DataFrame en CSV
+    production_df.to_csv(file_path, index=False)
+    
+    return file_path
+
+
+
+
 # Étape 1 : Générer le fichier de base de données horaire
 def generate_production_data():
     data = []
@@ -373,6 +406,10 @@ def generate_minute_data(production_data):
 
 
 # Générer les données finales
+#génération du fichier labels pour les production
+generate_production_labels_csv(nb_condi_gen)
+
+#génération du fichier production
 production_data = generate_production_data()
 
 production_data_modified = modify_changeover_time(production_data)
