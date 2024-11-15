@@ -66,7 +66,7 @@ df_products = pd.read_csv('data_csv/products_list_gpt.csv')
 
 
 # Nb de conditionnement généré
-nb_condi_gen = 1773
+nb_condi_gen = 3000
 
 container_sizes = [500, 1000, 3000, 5000]  # en litres
 nominal_cadences = {500: 60, 1000: 70, 3000: 35, 5000: 30}  # cadences nominales en bidons par minute
@@ -207,6 +207,10 @@ def generate_minute_data(production_data):
         # Périodes de production et d'arrêts
         remaining_containers = row['Total_Containers']
         remaining_changeover = row['Changeover_Time_min']
+
+        # arret de la boucle si la date de production est supérieur ou egale à date du jour
+        if current_time >= datetime.now():
+            break
         
         # intégration des temps de transition 
         while remaining_changeover > 0:
