@@ -423,7 +423,7 @@ minute_data = generate_minute_data(production_data_modified)
 
 
 # Sauvegarder le fichier final en CSV
-output_path = r'data_csv\production_data.csv'
+output_path = r'data\processed\production_data.csv'
 minute_data.to_csv(output_path, index=False)
 
 print(f"Fichier 'production_data.csv' généré avec succès dans le répertoire actuel.")

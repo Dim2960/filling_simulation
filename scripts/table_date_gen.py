@@ -20,7 +20,7 @@ date_df = pd.DataFrame({
 })
 
 # Exporter la DataFrame en CSV
-csv_path = "data_csv/table_date.csv"
+csv_path = "data/processed/table_date.csv"
 date_df.to_csv(csv_path, index=False)
 
 

@@ -77,7 +77,7 @@ df_products["Ratio"] = df_products.apply(
 
 
 # création du fichier csv pour les données gpt
-product_list_gpt = "data_csv/products_list_gpt.csv"
+product_list_gpt = "data/processed/products_list_gpt.csv"
 df_products.to_csv(product_list_gpt, index=False)
 
 print(df_products)
